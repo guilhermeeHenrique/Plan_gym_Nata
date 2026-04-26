@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reto Gym 2 Semanas | Principiante</title>
+  <meta name="description" content="Plan de entrenamiento de lunes a jueves para principiante usando una academia compacta." />
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: rgba(255, 255, 255, 0.09);
+      --card-strong: rgba(255, 255, 255, 0.14);
+      --text: #f8fafc;
+      --muted: #cbd5e1;
+      --soft: #94a3b8;
+      --accent: #f472b6;
+      --accent-2: #38bdf8;
+      --green: #34d399;
+      --yellow: #fbbf24;
+      --danger: #fb7185;
+      --border: rgba(255, 255, 255, 0.14);
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+      --radius: 24px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(244, 114, 182, 0.28), transparent 32%),
+        radial-gradient(circle at top right, rgba(56, 189, 248, 0.22), transparent 32%),
+        linear-gradient(145deg, #111827, #0f172a 48%, #020617);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 70px;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 42px;
+      border: 1px solid var(--border);
+      border-radius: 32px;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.05)),
+        radial-gradient(circle at 85% 18%, rgba(244, 114, 182, 0.18), transparent 28%);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      right: -90px;
+      top: -110px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      opacity: 0.28;
+      border-radius: 999px;
+      filter: blur(4px);
+    }
+
+    .badge {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      padding: 8px 13px;
+      border-radius: 999px;
+      color: #0f172a;
+      background: linear-gradient(135deg, #fdf2f8, #e0f2fe);
+      font-weight: 800;
+      font-size: 0.82rem;
+      letter-spacing: .02em;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      position: relative;
+      max-width: 760px;
+      margin-top: 18px;
+      font-size: clamp(2.2rem, 6vw, 5.1rem);
+      line-height: 0.96;
+      letter-spacing: -0.075em;
+    }
+
+    .hero p {
+      position: relative;
+      max-width: 780px;
+      margin-top: 20px;
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+
+    .hero-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .stat {
+      padding: 18px;
+      border-radius: 20px;
+      background: rgba(15, 23, 42, 0.46);
+      border: 1px solid var(--border);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.35rem;
+      line-height: 1.1;
+    }
+
+    .stat span {
+      display: block;
+      margin-top: 5px;
+      color: var(--soft);
+      font-size: .88rem;
+    }
+
+    .nav {
+      position: sticky;
+      top: 10px;
+      z-index: 20;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin: 18px 0 26px;
+      padding: 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.72);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(14px);
+    }
+
+    .nav a, .nav button {
+      border: 0;
+      cursor: pointer;
+      color: var(--text);
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      font-size: .92rem;
+      font-weight: 700;
+      transition: .2s ease;
+    }
+
+    .nav a:hover, .nav button:hover {
+      transform: translateY(-1px);
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .section {
+      margin-top: 30px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 16px;
+    }
+
+    .section-title h2 {
+      font-size: clamp(1.45rem, 3vw, 2.2rem);
+      letter-spacing: -.04em;
+    }
+
+    .section-title p {
+      color: var(--soft);
+      max-width: 540px;
+      text-align: right;
+    }
+
+    .panel {
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: var(--card);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+      overflow: hidden;
+    }
+
+    .rules {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 0;
+    }
+
+    .rules-main {
+      padding: 28px;
+    }
+
+    .rules-side {
+      padding: 28px;
+      background: linear-gradient(160deg, rgba(244, 114, 182, .14), rgba(56, 189, 248, .1));
+      border-left: 1px solid var(--border);
+    }
+
+    .list {
+      display: grid;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .rule {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      color: var(--muted);
+    }
+
+    .dot {
+      flex: 0 0 28px;
+      height: 28px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: rgba(52, 211, 153, .16);
+      color: var(--green);
+      font-weight: 900;
+    }
+
+    .progress-card {
+      margin-top: 18px;
+      padding: 18px;
+      border-radius: 20px;
+      background: rgba(2, 6, 23, .34);
+      border: 1px solid var(--border);
+    }
+
+    .progress-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .bar {
+      height: 12px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, .1);
+    }
+
+    .bar > div {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--green));
+      transition: width .25s ease;
+    }
+
+    .days {
+      display: grid;
+      gap: 22px;
+    }
+
+    .day {
+      overflow: hidden;
+      border-radius: 30px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, .075);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+    }
+
+    .day-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 18px;
+      align-items: center;
+      padding: 26px 28px;
+      background:
+        linear-gradient(135deg, rgba(244, 114, 182, .18), rgba(56, 189, 248, .10)),
+        rgba(255, 255, 255, .03);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .day-kicker {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      font-weight: 900;
+      font-size: .78rem;
+    }
+
+    .day h3 {
+      margin-top: 3px;
+      font-size: clamp(1.35rem, 3vw, 2rem);
+      letter-spacing: -.04em;
+    }
+
+    .day-header p {
+      margin-top: 8px;
+      color: var(--muted);
+      max-width: 760px;
+    }
+
+    .duration {
+      text-align: center;
+      min-width: 120px;
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(15, 23, 42, .58);
+      border: 1px solid var(--border);
+    }
+
+    .duration strong {
+      display: block;
+      font-size: 1.4rem;
+    }
+
+    .duration span {
+      color: var(--soft);
+      font-size: .82rem;
+      font-weight: 700;
+    }
+
+    .exercise-list {
+      display: grid;
+      gap: 14px;
+      padding: 22px;
+    }
+
+    .exercise {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 16px;
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      background: rgba(2, 6, 23, .28);
+      transition: .2s ease;
+    }
+
+    .exercise:hover {
+      transform: translateY(-2px);
+      background: rgba(2, 6, 23, .39);
+    }
+
+    .check {
+      width: 30px;
+      height: 30px;
+      margin-top: 4px;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+
+    .exercise-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .exercise h4 {
+      font-size: 1.08rem;
+      letter-spacing: -.02em;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 8px 0 10px;
+    }
+
+    .tag {
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .09);
+      border: 1px solid rgba(255,255,255,.08);
+      color: var(--muted);
+      font-size: .78rem;
+      font-weight: 800;
+    }
+
+    .exercise p {
+      color: var(--muted);
+    }
+
+    .video {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-top: 12px;
+      padding: 10px 13px;
+      border-radius: 999px;
+      color: #111827;
+      background: linear-gradient(135deg, #f9a8d4, #7dd3fc);
+      font-weight: 900;
+      transition: .2s ease;
+    }
+
+    .video:hover {
+      transform: translateY(-1px) scale(1.01);
+      filter: brightness(1.06);
+    }
+
+    .note {
+      margin-top: 12px;
+      padding: 13px 14px;
+      border-left: 3px solid var(--yellow);
+      border-radius: 14px;
+      color: var(--muted);
+      background: rgba(251, 191, 36, .08);
+    }
+
+    .footer-card {
+      margin-top: 28px;
+      padding: 28px;
+      border-radius: 30px;
+      border: 1px solid var(--border);
+      background:
+        linear-gradient(135deg, rgba(52, 211, 153, .12), rgba(244, 114, 182, .13)),
+        rgba(255, 255, 255, .07);
+      box-shadow: var(--shadow);
+    }
+
+    .footer-card h2 {
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      letter-spacing: -.05em;
+    }
+
+    .footer-card p {
+      margin-top: 12px;
+      color: var(--muted);
+      max-width: 880px;
+    }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .mini {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(2, 6, 23, .28);
+      border: 1px solid var(--border);
+    }
+
+    .mini strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .mini span {
+      color: var(--soft);
+      font-size: .92rem;
+    }
+
+    .floating {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 30;
+      display: flex;
+      gap: 10px;
+      flex-direction: column;
+    }
+
+    .floating button, .floating a {
+      display: grid;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: rgba(15, 23, 42, .82);
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 14px 40px rgba(0, 0, 0, .25);
+      backdrop-filter: blur(10px);
+      font-size: 1.1rem;
+    }
+
+    @media (max-width: 860px) {
+      .hero {
+        padding: 28px;
+      }
+
+      .hero-grid, .mini-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .rules {
+        grid-template-columns: 1fr;
+      }
+
+      .rules-side {
+        border-left: 0;
+        border-top: 1px solid var(--border);
+      }
+
+      .section-title {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .section-title p {
+        text-align: left;
+      }
+
+      .day-header {
+        grid-template-columns: 1fr;
+      }
+
+      .duration {
+        width: fit-content;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .page {
+        width: min(100% - 18px, 1180px);
+        padding-top: 12px;
+      }
+
+      .hero {
+        border-radius: 24px;
+        padding: 24px 18px;
+      }
+
+      .hero-grid, .mini-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav {
+        justify-content: flex-start;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        border-radius: 20px;
+      }
+
+      .nav a, .nav button {
+        flex: 0 0 auto;
+      }
+
+      .exercise {
+        grid-template-columns: 1fr;
+      }
+
+      .exercise-top {
+        flex-direction: column;
+      }
+
+      .check {
+        width: 26px;
+        height: 26px;
+      }
+
+      .floating {
+        right: 10px;
+        bottom: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page" id="top">
+    <section class="hero">
+      <div class="badge">✨ Reto principiante · 2 semanas</div>
+      <h1>Plan de gym para empezar sin miedo</h1>
+      <p>
+        Un plan de lunes a jueves para una persona que nunca ha entrenado. Es retador, pero suave y realista:
+        la meta es que después de estas dos semanas le coja gusto a la musculación y quiera seguir.
+      </p>
+
+      <div class="hero-grid">
+        <div class="stat"><strong>4 días</strong><span>Lunes a jueves</span></div>
+        <div class="stat"><strong>35–45 min</strong><span>Por sesión</span></div>
+        <div class="stat"><strong>6/10</strong><span>Esfuerzo ideal</span></div>
+        <div class="stat"><strong>2 semanas</strong><span>Repetir el mismo plan</span></div>
+      </div>
+    </section>
+
+    <nav class="nav" aria-label="Navegación principal">
+      <a href="#reglas">Reglas</a>
+      <a href="#lunes">Lunes</a>
+      <a href="#martes">Martes</a>
+      <a href="#miercoles">Miércoles</a>
+      <a href="#jueves">Jueves</a>
+      <button id="resetBtn" type="button">Reiniciar progreso</button>
+    </nav>
+
+    <section class="section" id="reglas">
+      <div class="section-title">
+        <h2>Antes de empezar</h2>
+        <p>La prioridad es técnica, confianza y constancia. Nada de entrenar hasta quedar destruida.</p>
+      </div>
+
+      <div class="panel rules">
+        <div class="rules-main">
+          <h3>Reglas del reto</h3>
+          <div class="list">
+            <div class="rule"><div class="dot">1</div><div>Usar pesos livianos al inicio. El movimiento debe salir limpio y controlado.</div></div>
+            <div class="rule"><div class="dot">2</div><div>Descansar de 60 a 90 segundos entre series. No hay afán.</div></div>
+            <div class="rule"><div class="dot">3</div><div>Trabajar en esfuerzo 6 o 7 de 10. Debe costar, pero no asustar.</div></div>
+            <div class="rule"><div class="dot">4</div><div>Si duele una articulación, parar, bajar peso o cambiar el ejercicio. Ardor muscular normal sí; dolor raro no.</div></div>
+            <div class="rule"><div class="dot">5</div><div>En la segunda semana repetir el mismo plan. Si todo fue fácil, subir un poquito el peso o agregar una serie en 1 o 2 ejercicios principales.</div></div>
+          </div>
+        </div>
+
+        <aside class="rules-side">
+          <h3>Progreso</h3>
+          <p style="color: var(--muted); margin-top: 6px;">Marca cada ejercicio cuando lo termines. Se guarda automáticamente en este navegador.</p>
+          <div class="progress-card">
+            <div class="progress-row">
+              <span>Completado</span>
+              <span id="progressText">0%</span>
+            </div>
+            <div class="bar"><div id="progressBar"></div></div>
+          </div>
+          <div class="note">
+            Frase clave: “Hoy no tiene que ser perfecto. Solo tengo que presentarme y hacerlo con calma.”
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section days">
+
+      <article class="day" id="lunes">
+        <header class="day-header">
+          <div>
+            <div class="day-kicker">Día 1 · Lunes</div>
+            <h3>Full body fácil y completo</h3>
+            <p>Objetivo: conocer las máquinas, activar todo el cuerpo y salir con una sensación buena.</p>
+          </div>
+          <div class="duration"><strong>40 min</strong><span>aprox.</span></div>
+        </header>
+
+        <div class="exercise-list">
+          <div class="exercise">
+            <input class="check" type="checkbox" data-id="lunes-caminadora">
+            <div>
+              <div class="exercise-top"><h4>1. Caminadora · calentamiento</h4></div>
+              <div class="tags"><span class="tag">6 min</span><span class="tag">suave</span><span class="tag">cardio</span></div>
+              <p>Caminar cómoda, espalda recta, hombros relajados y pasos naturales. No agarrarse fuerte de los apoyos.</p>
+              <a class="video" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=caminadora+para+principiantes+t%C3%A9cnica+caminar+treadmill+beginner+workout">▶ Ver técnica en YouTube</a>
+            </div>
+          </div>
+
+          <div class="exercise">
+            <input class="check" type="checkbox" data-id="lunes-extension">
+            <div>
+              <h4>2. Extensión de piernas en máquina</h4>
+              <div class="tags"><span class="tag">2 series</span><span class="tag">12 reps</span><span class="tag">60s descanso</span></div>
+              <p>Sentarse bien apoyada, subir controlado, apretar un segundo arriba y bajar despacio. Sin patadas.</p>
+              <a class="video" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=extensi%C3%B3n+de+piernas+m%C3%A1quina+t%C3%A9cnica+principiantes+leg+extension+tutorial">▶ Ver técnica en YouTube</a>
+            </div>
+          </div>
+
+          <div class="exercise">
+            <input class="check" type="checkbox" data-id="lunes-chest">
+            <div>
+              <h4>3. Chest press · press de pecho sentado</h4>
+              <div class="tags"><span class="tag">2 series</span><span class="tag">10–12 reps</span><span class="tag">60–90s descanso</span></div>
+              <p>Espalda pegada al respaldo, pecho abierto, empujar sin bloquear los codos y volver lento.</p>
+              <a class="video" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=chest+press+m%C3%A1quina+t%C3%A9cnica+principiantes+machine+chest+press+tutorial">▶ Ver técnica en YouTube</a>
+            </div>
+          </div>
+
+          <div class="exercise">
+            <input class="check" type="checkbox" data-id="lunes-pulldown">
+            <div>
+              <h4>4. Jalón al pecho · lat pulldown</h4>
+              <div class="tags"><span class="tag">2 series</span><span class="tag">10–12 reps</span><span class="tag">60–90s descanso</span></div>
+              <p>Pecho abierto, tirar la barra hacia la parte alta del pecho. Pensar en bajar los codos, no solo jalar con los brazos.</p>
+              <a class="video" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=jal%C3%B3n+al+pecho+t%C3%A9cnica+principiantes+lat+pulldown+tutorial">▶ Ver técnica en YouTube</a>
+            </div>
+          </div>
+
+          <div class="exercise">
+            <input class="check" type="checkbox" data-id="lunes-glute">
+            <div>
+              <h4>5. Puente de glúteo en colchoneta</h4>
+              <div class="tags"><span class="tag">2 series</span><span class="tag">12 reps</span><span class="tag">45–60s descanso</span></div>
+              <p>Acostada boca arriba, rodillas flexionadas. Subir la cadera apretando glúteos y bajar con control.</p>
+              <a class="video" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=puente+de+gl%C3%BAteo+t%C3%A9cnica+principiantes+glute+bridge+tutorial">▶ Ver técnica en YouTube</a>
+            </div>
+          </div>
+
+          <div class="exercise">
+            <input class="check" type="checkbox" data-id="lunes-deadbug">
+            <div>
+              <h4>6. Dead bug · abdomen principiante</h4>
+              <div class="tags"><span class="tag">2 series</span><span class="tag">8 por lado</span><span class="tag">control</span></div>
+              <p>Espalda baja pegada al suelo. Mover brazo y pierna contraria lento, sin perder el control del abdomen.</p>
+              <a class="video" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=dead+bug+ejercicio+t%C3%A9cnica+principiantes+tutorial">▶ Ver técnica en YouTube</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="day" id="martes">
+        <header class="day-header">
+          <div>
+            <div class="day-kicker">Día 2 · Martes</div>
+            <h3>Pierna, glúteo y cardio suave</h3>
+            <p>Objetivo: trabajar piernas sin dejarla destruida al día siguiente.</p>
+          </div>
+          <div class="duration"><strong>40 min</strong><span>aprox.</span></div>
+        </header>
+
+        <div class="exercise-list">
+          <div class="exercise"><input class="check" type="checkbox" data-id="martes-eliptica"><div><h4>1. Elíptica · calentamiento</h4><div class="tags"><span class="tag">6 min</span><span class="tag">suave</span></div><p>Postura alta, mirar al frente y mover brazos y piernas sin acelerar demasiado.</p><a class="video" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=el%C3%ADptica+para+principiantes+t%C3%A9cnica+elliptical+beginner+workout">▶ Ver técnica en YouTube</a></div></div>
+          <div class="exercise"><input class="check" type="checkbox" data-id="martes-goblet"><div><h4>2. Goblet squat con mancuerna</h4><div class="tags"><span class="tag">2 series</span><span class="tag">10 reps</span><span class="tag">75s descanso</span></div><p>Mancuerna cerca del pecho, bajar como si se sentara en una silla. Rodillas siguiendo la línea de los pies.</p><a class="video" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=goblet+squat+t%C3%A9cnica+principiantes+con+mancuerna+tutorial">▶ Ver técnica en YouTube</a></div></div>
+          <div class="exercise"><input class="check" type="checkbox" data-id="martes-rdl"><div><h4>3. Peso muerto rumano con mancuernas</h4><div class="tags"><span class="tag">2 series</span><span class="tag">10 reps</span><span class="tag">75s descanso</span></div><p>Cadera hacia atrás, mancuernas cerca de las piernas, espalda recta. Sentir trabajo detrás de piernas y glúteos.</p><a class="video" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=peso+muerto+rumano+con+mancuernas+t%C3%A9cnica+principiantes+dumbbell+romanian+deadlift">▶ Ver técnica en YouTube</a></div></div>
+          <div class="exercise"><input class="check" type="checkbox" data-id="martes-extension"><div><h4>4. Extensión de piernas en máquina</h4><div class="tags"><span class="tag">2 series</span><span class="tag">12 reps</span><span class="tag">60s descanso</span></div><p>Subir sin impulso, bajar lento. Si siente molestia en la rodilla, reducir peso o parar.</p><a class="video" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=extensi%C3%B3n+de+piernas+m%C3%A1quina+t%C3%A9cnica+principiantes+leg+extension+tutorial">▶ Ver técnica en YouTube</a></div></div>
+          <div class="exercise"><input class="check" type="checkbox" data-id="martes-glute"><div><h4>5. Puente de glúteo</h4><div class="tags"><span class="tag">2 series</span><span class="tag">12–15 reps</span></div><p>Subir cadera, apretar glúteos arriba y bajar sin relajarse totalmente.</p><a class="video" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=puente+de+gl%C3%BAteo+t%C3%A9cnica+principiantes+glute+bridge+tutorial">▶ Ver técnica en YouTube</a></div></div>
+          <div class="exercise"><input class="check" type="checkbox" data-id="martes-plank"><div><h4>6. Plancha de rodillas o normal</h4><div class="tags"><span class="tag">2 series</span><span class="tag">15–25s</span></div><p>Abdomen firme, glúteos apretados y cuello neutro. Mejor poco tiempo bien hecho que mucho tiempo mal.</p><a class="video" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=plancha+para+principiantes+t%C3%A9cnica+plank+tutorial">▶ Ver técnica en YouTube</a></div></div>
+        </div>
+      </article>
+
+      <article class="day" id="miercoles">
+        <header class="day-header">
+          <div>
+            <div class="day-kicker">Día 3 · Miércoles</div>
+            <h3>Tren superior y postura</h3>
+            <p>Objetivo: espalda, pecho, brazos y hombros. Más ligero para las piernas.</p>
+          </div>
+          <div class="duration"><strong>35–40 min</strong><span>aprox.</span></div>
+        </header>
+
+        <div class="exercise-list">
+          <div class="exercise"><input class="check" type="checkbox" data-id="miercoles-caminadora"><div><h4>1. Caminadora · calentamiento</h4><div class="tags"><span class="tag">5–6 min</span><span class="tag">suave</span></div><p>Caminar cómoda, soltar los hombros y respirar tranquilo.</p><a class="video" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=caminadora+para+principiantes+t%C3%A9cnica+caminar+treadmill+beginner+workout">▶ Ver técnica en YouTube</a></div></div>
+          <div class="exercise"><input class="check" type="checkbox" data-id="miercoles-row"><div><h4>2. Remo sentado en polea</h4><div class="tags"><span class="tag">2 series</span><span class="tag">10–12 reps</span><span class="tag">75s descanso</span></div><p>Espalda recta, tirar el agarre hacia el abdomen, juntar suavemente los omóplatos y volver controlado.</p><a class="video" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=remo+sentado+en+polea+t%C3%A9cnica+principiantes+seated+cable+row">▶ Ver técnica en YouTube</a></div></div>
+          <div class="exercise"><input class="check" type="checkbox" data-id="miercoles-pecdeck"><div><h4>3. Pec deck · voador de pecho</h4><div class="tags"><span class="tag">2 series</span><span class="tag">10–12 reps</span></div><p>Ajustar el asiento para que los brazos queden a la altura del pecho. Cerrar controlado y volver sin soltar de golpe.</p><a class="video" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=pec+deck+m%C3%A1quina+t%C3%A9cnica+principiantes+chest+fly+machine+tutorial">▶ Ver técnica en YouTube</a></div></div>
+          <div class="exercise"><input class="check" type="checkbox" data-id="miercoles-triceps"><div><h4>4. Tríceps en polea alta</h4><div class="tags"><span class="tag">2 series</span><span class="tag">12 reps</span></div><p>Codos pegados al cuerpo, empujar hacia abajo sin mover los hombros. Subir controlado.</p><a class="video" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=tr%C3%ADceps+polea+alta+t%C3%A9cnica+principiantes+tricep+pushdown+tutorial">▶ Ver técnica en YouTube</a></div></div>
+          <div class="exercise"><input class="check" type="checkbox" data-id="miercoles-biceps"><div><h4>5. Curl de bíceps con mancuernas</h4><div class="tags"><span class="tag">2 series</span><span class="tag">10–12 reps</span></div><p>Codos cerca del cuerpo, subir sin balancearse y bajar despacio.</p><a class="video" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=curl+b%C3%ADceps+mancuernas+t%C3%A9cnica+principiantes+dumbbell+curl+tutorial">▶ Ver técnica en YouTube</a></div></div>
+          <div class="exercise"><input class="check" type="checkbox" data-id="miercoles-laterales"><div><h4>6. Elevación lateral con mancuernas</h4><div class="tags"><span class="tag">2 series</span><span class="tag">10 reps</span></div><p>Mancuernas livianas, codos un poco flexionados, subir hasta la altura de los hombros y bajar lento.</p><a class="video" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=elevaciones+laterales+mancuernas+t%C3%A9cnica+principiantes+lateral+raise+tutorial">▶ Ver técnica en YouTube</a></div></div>
+        </div>
+      </article>
+
+      <article class="day" id="jueves">
+        <header class="day-header">
+          <div>
+            <div class="day-kicker">Día 4 · Jueves</div>
+            <h3>Circuito suave y divertido</h3>
+            <p>Objetivo: cerrar la semana con sensación de logro. Hacer 2 vueltas completas.</p>
+          </div>
+          <div class="duration"><strong>35–45 min</strong><span>aprox.</span></div>
+        </header>
+
+        <div class="exercise-list">
+          <div class="exercise"><input class="check" type="checkbox" data-id="jueves-eliptica"><div><h4>1. Elíptica</h4><div class="tags"><span class="tag">5 min</span><span class="tag">suave a moderado</span></div><p>Usarla para entrar en calor, no para cansarse desde el inicio.</p><a class="video" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=el%C3%ADptica+para+principiantes+t%C3%A9cnica+elliptical+beginner+workout">▶ Ver técnica en YouTube</a></div></div>
+          <div class="exercise"><input class="check" type="checkbox" data-id="jueves-goblet"><div><h4>2. Goblet squat con mancuerna</h4><div class="tags"><span class="tag">2 vueltas</span><span class="tag">10 reps</span></div><p>Bajar controlado y subir firme. Mantener el pecho abierto.</p><a class="video" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=goblet+squat+t%C3%A9cnica+principiantes+con+mancuerna+tutorial">▶ Ver técnica en YouTube</a></div></div>
+          <div class="exercise"><input class="check" type="checkbox" data-id="jueves-pulldown"><div><h4>3. Jalón al pecho</h4><div class="tags"><span class="tag">2 vueltas</span><span class="tag">10 reps</span></div><p>Tirar hacia el pecho con control, codos bajando y espalda estable.</p><a class="video" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=jal%C3%B3n+al+pecho+t%C3%A9cnica+principiantes+lat+pulldown+tutorial">▶ Ver técnica en YouTube</a></div></div>
+          <div class="exercise"><input class="check" type="checkbox" data-id="jueves-chest"><div><h4>4. Chest press</h4><div class="tags"><span class="tag">2 vueltas</span><span class="tag">10 reps</span></div><p>Empujar controlado, volver lento y no despegar la espalda del respaldo.</p><a class="video" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=chest+press+m%C3%A1quina+t%C3%A9cnica+principiantes+machine+chest+press+tutorial">▶ Ver técnica en YouTube</a></div></div>
+          <div class="exercise"><input class="check" type="checkbox" data-id="jueves-rdl"><div><h4>5. Peso muerto rumano con mancuernas</h4><div class="tags"><span class="tag">2 vueltas</span><span class="tag">10 reps</span></div><p>Cadera hacia atrás, espalda recta y mancuernas cerca de las piernas.</p><a class="video" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=peso+muerto+rumano+con+mancuernas+t%C3%A9cnica+principiantes+dumbbell+romanian+deadlift">▶ Ver técnica en YouTube</a></div></div>
+          <div class="exercise"><input class="check" type="checkbox" data-id="jueves-deadbug"><div><h4>6. Dead bug</h4><div class="tags"><span class="tag">2 vueltas</span><span class="tag">8 por lado</span></div><p>Movimiento lento y controlado. La espalda baja se queda pegada al suelo.</p><a class="video" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=dead+bug+ejercicio+t%C3%A9cnica+principiantes+tutorial">▶ Ver técnica en YouTube</a></div></div>
+        </div>
+      </article>
+    </section>
+
+    <section class="footer-card">
+      <h2>Cómo repetir en la segunda semana</h2>
+      <p>
+        Repetir exactamente la misma rutina. Si la primera semana fue cómoda, subir un poquito el peso o agregar una tercera serie
+        solo en uno o dos ejercicios principales. Si terminó muy cansada, mantener igual. La victoria es crear el hábito.
+      </p>
+
+      <div class="mini-grid">
+        <div class="mini"><strong>Si fue fácil</strong><span>Subir un poquito el peso o agregar 1 serie.</span></div>
+        <div class="mini"><strong>Si fue perfecto</strong><span>Repetir igual y mejorar la técnica.</span></div>
+        <div class="mini"><strong>Si fue pesado</strong><span>Bajar peso y descansar más.</span></div>
+      </div>
+
+      <p style="font-weight: 800; color: white; margin-top: 22px;">
+        “Poquito a poquito. Lo importante es salir orgullosa, no destruida.”
+      </p>
+    </section>
+  </main>
+
+  <div class="floating" aria-label="Atalhos">
+    <a href="#top" title="Volver arriba">↑</a>
+  </div>
+
+  <script>
+    const checks = Array.from(document.querySelectorAll('.check'));
+    const progressText = document.getElementById('progressText');
+    const progressBar = document.getElementById('progressBar');
+    const resetBtn = document.getElementById('resetBtn');
+
+    function loadProgress() {
+      checks.forEach(check => {
+        const saved = localStorage.getItem('gym-' + check.dataset.id);
+        check.checked = saved === 'true';
+      });
+      updateProgress();
+    }
+
+    function updateProgress() {
+      const total = checks.length;
+      const done = checks.filter(c => c.checked).length;
+      const percent = total ? Math.round((done / total) * 100) : 0;
+      progressText.textContent = percent + '%';
+      progressBar.style.width = percent + '%';
+    }
+
+    checks.forEach(check => {
+      check.addEventListener('change', () => {
+        localStorage.setItem('gym-' + check.dataset.id, check.checked);
+        updateProgress();
+      });
+    });
+
+    resetBtn.addEventListener('click', () => {
+      const ok = confirm('¿Seguro que quieres reiniciar el progreso?');
+      if (!ok) return;
+      checks.forEach(check => {
+        check.checked = false;
+        localStorage.removeItem('gym-' + check.dataset.id);
+      });
+      updateProgress();
+    });
+
+    loadProgress();
+  </script>
+</body>
+</html>
