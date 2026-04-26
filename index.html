@@ -109,7 +109,7 @@
 
     .hero p {
       position: relative;
-      max-width: 780px;
+      max-width: 820px;
       margin-top: 20px;
       color: var(--muted);
       font-size: 1.08rem;
@@ -403,22 +403,67 @@
       color: var(--muted);
     }
 
-    .video {
+    .video,
+    .sub-toggle,
+    .sub-video {
       display: inline-flex;
       align-items: center;
       gap: 9px;
       margin-top: 12px;
       padding: 10px 13px;
       border-radius: 999px;
-      color: #111827;
-      background: linear-gradient(135deg, #f9a8d4, #7dd3fc);
       font-weight: 900;
       transition: .2s ease;
     }
 
-    .video:hover {
+    .video {
+      color: #111827;
+      background: linear-gradient(135deg, #f9a8d4, #7dd3fc);
+    }
+
+    .video:hover,
+    .sub-toggle:hover,
+    .sub-video:hover {
       transform: translateY(-1px) scale(1.01);
       filter: brightness(1.06);
+    }
+
+    .sub-toggle {
+      border: 1px solid var(--border);
+      color: var(--text);
+      background: rgba(255, 255, 255, .08);
+      cursor: pointer;
+      font-family: inherit;
+      font-size: .9rem;
+    }
+
+    .substitution {
+      display: none;
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, .12);
+      background: rgba(15, 23, 42, .48);
+    }
+
+    .substitution.active {
+      display: block;
+    }
+
+    .substitution strong {
+      display: block;
+      margin-bottom: 6px;
+      color: #ffffff;
+    }
+
+    .substitution p {
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    .sub-video {
+      color: #0f172a;
+      background: linear-gradient(135deg, #bbf7d0, #bae6fd);
     }
 
     .note {
@@ -647,6 +692,11 @@
               <div class="dot">5</div>
               <div>Si aparece dolor articular o molestia fuerte, detener el ejercicio, reducir la carga o cambiar el movimiento.</div>
             </div>
+
+            <div class="rule">
+              <div class="dot">6</div>
+              <div>Cuando una máquina esté ocupada o el movimiento no se sienta cómodo, usar la sustitución indicada debajo del ejercicio.</div>
+            </div>
           </div>
         </div>
 
@@ -715,8 +765,8 @@
       eliptica: "https://www.youtube.com/watch?v=t9KVWTROVb0",
       extensionPiernas: "https://www.youtube.com/watch?v=3pOsjZGe10k",
       chestPress: "https://www.youtube.com/watch?v=gNBU7hmW2EU",
-      jalonPecho: "https://www.youtube.com/watch?v=AOpi-p0cJkc",
-      puenteGluteo: "https://www.youtube.com/watch?v=wPM8icPu6H8",
+      jalonPecho: "https://www.youtube.com/watch?v=jKHb2w__Y90",
+      puenteGluteo: "https://www.youtube.com/watch?v=iwHvjHh59f8",
       deadBug: "https://www.youtube.com/watch?v=g_BYB0R-4Ws",
       gobletSquat: "https://www.youtube.com/watch?v=4uHkZHPtQS4",
       pesoMuertoRumano: "https://www.youtube.com/watch?v=FQKfr1YDhEk",
@@ -725,7 +775,22 @@
       pecDeck: "https://www.youtube.com/watch?v=JYmszQs-mRs",
       tricepsPolea: "https://www.youtube.com/watch?v=nMqQNGo4Jtg",
       curlBiceps: "https://www.youtube.com/watch?v=ykJmrZ5v0Oo",
-      elevacionLateral: "https://www.youtube.com/watch?v=3VcKaXpzqRo"
+      elevacionLateral: "https://www.youtube.com/watch?v=3VcKaXpzqRo",
+
+      caminataLibre: "https://www.youtube.com/watch?v=enYITYwvPAQ",
+      stepTouch: "https://www.youtube.com/watch?v=VWj8ZxCxrYk",
+      sentadillaPesoCorporal: "https://www.youtube.com/watch?v=aclHkVaku9U",
+      dumbbellFloorPress: "https://www.youtube.com/watch?v=VmB1G1K7v94",
+      remoMancuerna: "https://www.youtube.com/watch?v=pYcpY20QaE8",
+      pressPechoMancuernasSuelo: "https://www.youtube.com/watch?v=VmB1G1K7v94",
+      patadaGluteo: "https://www.youtube.com/watch?v=SJ1Xuz9D-ZQ",
+      birdDog: "https://www.youtube.com/watch?v=wiFNA3sqjCA",
+      hipHinge: "https://www.youtube.com/watch?v=0Sd1AZZ77aw",
+      flexionesPared: "https://www.youtube.com/watch?v=EgU3CbtQTlw",
+      reverseFlyMancuernas: "https://www.youtube.com/watch?v=JoCRRZ3zRtI",
+      tricepsMancuerna: "https://www.youtube.com/watch?v=-Vyt2QdsR7E",
+      martilloMancuernas: "https://www.youtube.com/watch?v=zC3nLlEvin4",
+      elevacionLateralLigera: "https://www.youtube.com/watch?v=3VcKaXpzqRo"
     };
 
     const plan = [
@@ -741,42 +806,60 @@
             title: "1. Caminadora · calentamiento",
             tags: ["6 min", "ritmo suave", "cardio"],
             text: "Caminar con postura erguida, hombros relajados y pasos naturales. Mantener un ritmo cómodo para preparar el cuerpo.",
-            video: videos.caminadora
+            video: videos.caminadora,
+            subTitle: "Marcha activa en el suelo",
+            subText: "Si la caminadora está ocupada o se siente incómoda, realizar marcha activa en el suelo durante 6 minutos, moviendo brazos y manteniendo respiración estable.",
+            subVideo: videos.caminataLibre
           },
           {
             id: "lunes-extension",
             title: "2. Extensión de piernas en máquina",
             tags: ["2 series", "12 reps", "60s descanso"],
             text: "Apoyar bien la espalda, extender las piernas con control y bajar lentamente. Evitar impulsos o movimientos rápidos.",
-            video: videos.extensionPiernas
+            video: videos.extensionPiernas,
+            subTitle: "Sentadilla con peso corporal",
+            subText: "Si la máquina se siente difícil o no está disponible, hacer sentadillas sin peso. Bajar poco a poco, mantener el pecho abierto y controlar las rodillas.",
+            subVideo: videos.sentadillaPesoCorporal
           },
           {
             id: "lunes-chest",
             title: "3. Chest press · press de pecho sentado",
             tags: ["2 series", "10–12 reps", "60–90s descanso"],
             text: "Mantener la espalda pegada al respaldo, empujar de forma controlada y regresar sin soltar el peso de golpe.",
-            video: videos.chestPress
+            video: videos.chestPress,
+            subTitle: "Press de pecho con mancuernas en el suelo",
+            subText: "Si la máquina está ocupada, acostarse en una colchoneta y hacer press con mancuernas ligeras. Mantener muñecas estables y bajar los codos con control.",
+            subVideo: videos.dumbbellFloorPress
           },
           {
             id: "lunes-pulldown",
             title: "4. Jalón al pecho · lat pulldown",
             tags: ["2 series", "10–12 reps", "60–90s descanso"],
             text: "Sentarse firme, mantener el pecho abierto y llevar la barra hacia la parte alta del pecho bajando los codos.",
-            video: videos.jalonPecho
+            video: videos.jalonPecho,
+            subTitle: "Remo con mancuerna a una mano",
+            subText: "Si la polea es difícil de ajustar, hacer remo con una mancuerna. Apoyar una mano en una superficie estable, espalda recta y llevar el codo hacia atrás.",
+            subVideo: videos.remoMancuerna
           },
           {
             id: "lunes-glute",
             title: "5. Puente de glúteo en colchoneta",
             tags: ["2 series", "12 reps", "45–60s descanso"],
             text: "Acostarse boca arriba, apoyar bien los pies, elevar la cadera y contraer los glúteos en la parte alta del movimiento.",
-            video: videos.puenteGluteo
+            video: videos.puenteGluteo,
+            subTitle: "Patada de glúteo en colchoneta",
+            subText: "Si el puente se siente incómodo en la espalda baja, hacer patada de glúteo en cuatro apoyos, moviendo una pierna por vez con control.",
+            subVideo: videos.patadaGluteo
           },
           {
             id: "lunes-deadbug",
             title: "6. Dead bug · abdomen principiante",
             tags: ["2 series", "8 por lado", "control"],
             text: "Mantener la zona lumbar cerca del suelo y mover brazo y pierna contraria de forma lenta y coordinada.",
-            video: videos.deadBug
+            video: videos.deadBug,
+            subTitle: "Bird dog",
+            subText: "Si el dead bug resulta confuso, hacer bird dog en cuatro apoyos. Extender brazo y pierna contraria manteniendo el abdomen activo.",
+            subVideo: videos.birdDog
           }
         ]
       },
@@ -792,42 +875,60 @@
             title: "1. Elíptica · calentamiento",
             tags: ["6 min", "ritmo suave"],
             text: "Usar un ritmo cómodo, mantener la mirada al frente y coordinar brazos y piernas sin acelerar demasiado.",
-            video: videos.eliptica
+            video: videos.eliptica,
+            subTitle: "Step touch sin impacto",
+            subText: "Si la elíptica no está disponible, hacer step touch en el suelo durante 6 minutos. Mantener un ritmo cómodo y respiración estable.",
+            subVideo: videos.stepTouch
           },
           {
             id: "martes-goblet",
             title: "2. Goblet squat con mancuerna",
             tags: ["2 series", "10 reps", "75s descanso"],
             text: "Sostener la mancuerna cerca del pecho, bajar con control y mantener las rodillas alineadas con la dirección de los pies.",
-            video: videos.gobletSquat
+            video: videos.gobletSquat,
+            subTitle: "Sentadilla sin peso",
+            subText: "Si la mancuerna incomoda, hacer la misma sentadilla sin peso. Buscar estabilidad, rango cómodo y buena alineación.",
+            subVideo: videos.sentadillaPesoCorporal
           },
           {
             id: "martes-rdl",
             title: "3. Peso muerto rumano con mancuernas",
             tags: ["2 series", "10 reps", "75s descanso"],
             text: "Llevar la cadera hacia atrás, mantener la espalda recta y bajar las mancuernas cerca de las piernas.",
-            video: videos.pesoMuertoRumano
+            video: videos.pesoMuertoRumano,
+            subTitle: "Bisagra de cadera sin peso",
+            subText: "Si el peso muerto rumano se siente técnico, practicar primero el movimiento de cadera sin peso. Es la base para proteger la espalda.",
+            subVideo: videos.hipHinge
           },
           {
             id: "martes-extension",
             title: "4. Extensión de piernas en máquina",
             tags: ["2 series", "12 reps", "60s descanso"],
             text: "Realizar el movimiento de forma controlada, sin bloquear con fuerza las rodillas en la parte alta.",
-            video: videos.extensionPiernas
+            video: videos.extensionPiernas,
+            subTitle: "Sentadilla con peso corporal",
+            subText: "Si la máquina no está disponible, hacer sentadillas suaves sin peso. Controlar la bajada y subir sin impulso.",
+            subVideo: videos.sentadillaPesoCorporal
           },
           {
             id: "martes-glute",
             title: "5. Puente de glúteo",
             tags: ["2 series", "12–15 reps"],
             text: "Elevar la cadera, contraer glúteos en la parte alta y bajar con control manteniendo la postura estable.",
-            video: videos.puenteGluteo
+            video: videos.puenteGluteo,
+            subTitle: "Patada de glúteo en colchoneta",
+            subText: "Si el puente no se siente bien, hacer patadas de glúteo alternando piernas, sin arquear la espalda.",
+            subVideo: videos.patadaGluteo
           },
           {
             id: "martes-plank",
             title: "6. Plancha de rodillas o plancha normal",
             tags: ["2 series", "15–25s"],
             text: "Mantener abdomen activo, glúteos contraídos y cuello neutro. Elegir la versión que permita conservar buena postura.",
-            video: videos.plancha
+            video: videos.plancha,
+            subTitle: "Bird dog",
+            subText: "Si la plancha se siente muy pesada, hacer bird dog para trabajar abdomen, estabilidad y coordinación con menos presión.",
+            subVideo: videos.birdDog
           }
         ]
       },
@@ -843,42 +944,60 @@
             title: "1. Caminadora · calentamiento",
             tags: ["5–6 min", "ritmo suave"],
             text: "Caminar a un ritmo cómodo para elevar la temperatura corporal antes de iniciar los ejercicios de fuerza.",
-            video: videos.caminadora
+            video: videos.caminadora,
+            subTitle: "Marcha activa en el suelo",
+            subText: "Si la caminadora está ocupada, caminar en el lugar o hacer marcha activa durante 5 a 6 minutos.",
+            subVideo: videos.caminataLibre
           },
           {
             id: "miercoles-row",
             title: "2. Remo sentado en polea",
             tags: ["2 series", "10–12 reps", "75s descanso"],
             text: "Mantener la espalda recta, llevar el agarre hacia el abdomen y juntar suavemente los omóplatos.",
-            video: videos.remoSentado
+            video: videos.remoSentado,
+            subTitle: "Remo con mancuerna a una mano",
+            subText: "Si la polea está ocupada, usar una mancuerna ligera. Mantener espalda estable y llevar el codo hacia atrás.",
+            subVideo: videos.remoMancuerna
           },
           {
             id: "miercoles-pecdeck",
             title: "3. Pec deck · voador de pecho",
             tags: ["2 series", "10–12 reps"],
             text: "Ajustar el asiento para que los brazos queden a la altura del pecho. Cerrar y abrir con control.",
-            video: videos.pecDeck
+            video: videos.pecDeck,
+            subTitle: "Press de pecho con mancuernas en el suelo",
+            subText: "Si el pec deck se siente incómodo, hacer press en el suelo con mancuernas ligeras, cuidando hombros y muñecas.",
+            subVideo: videos.pressPechoMancuernasSuelo
           },
           {
             id: "miercoles-triceps",
             title: "4. Tríceps en polea alta",
             tags: ["2 series", "12 reps"],
             text: "Mantener los codos cerca del cuerpo, empujar hacia abajo y regresar lentamente sin mover los hombros.",
-            video: videos.tricepsPolea
+            video: videos.tricepsPolea,
+            subTitle: "Extensión de tríceps con mancuerna",
+            subText: "Si la polea no está disponible, usar una mancuerna ligera y realizar extensión de tríceps con control.",
+            subVideo: videos.tricepsMancuerna
           },
           {
             id: "miercoles-biceps",
             title: "5. Curl de bíceps con mancuernas",
             tags: ["2 series", "10–12 reps"],
             text: "Mantener los codos cerca del cuerpo, subir las mancuernas sin balancear el tronco y bajar con control.",
-            video: videos.curlBiceps
+            video: videos.curlBiceps,
+            subTitle: "Curl martillo con mancuernas",
+            subText: "Si el curl tradicional se siente incómodo en la muñeca, hacer curl martillo con agarre neutro.",
+            subVideo: videos.martilloMancuernas
           },
           {
             id: "miercoles-laterales",
             title: "6. Elevación lateral con mancuernas",
             tags: ["2 series", "10 reps"],
             text: "Usar mancuernas ligeras, subir hasta la altura de los hombros y bajar lentamente sin impulso.",
-            video: videos.elevacionLateral
+            video: videos.elevacionLateral,
+            subTitle: "Elevación lateral con menos peso o sin peso",
+            subText: "Si cuesta mantener la técnica, hacer el movimiento con mancuernas muy ligeras o incluso sin peso para aprender el patrón.",
+            subVideo: videos.elevacionLateralLigera
           }
         ]
       },
@@ -894,42 +1013,60 @@
             title: "1. Elíptica",
             tags: ["5 min", "suave a moderado"],
             text: "Realizar un calentamiento progresivo antes del circuito principal.",
-            video: videos.eliptica
+            video: videos.eliptica,
+            subTitle: "Step touch sin impacto",
+            subText: "Si la elíptica está ocupada, hacer step touch en el suelo con ritmo cómodo.",
+            subVideo: videos.stepTouch
           },
           {
             id: "jueves-goblet",
             title: "2. Goblet squat con mancuerna",
             tags: ["2 vueltas", "10 reps"],
             text: "Ejecutar cada repetición con control, manteniendo el pecho abierto y las rodillas alineadas.",
-            video: videos.gobletSquat
+            video: videos.gobletSquat,
+            subTitle: "Sentadilla sin peso",
+            subText: "Si el peso incomoda, hacer sentadilla sin mancuerna y concentrarse en postura, respiración y control.",
+            subVideo: videos.sentadillaPesoCorporal
           },
           {
             id: "jueves-pulldown",
             title: "3. Jalón al pecho",
             tags: ["2 vueltas", "10 reps"],
             text: "Mantener el tronco estable y llevar la barra hacia el pecho bajando los codos.",
-            video: videos.jalonPecho
+            video: videos.jalonPecho,
+            subTitle: "Remo con mancuerna",
+            subText: "Si la polea no está disponible, hacer remo con mancuerna a una mano, manteniendo la espalda recta.",
+            subVideo: videos.remoMancuerna
           },
           {
             id: "jueves-chest",
             title: "4. Chest press",
             tags: ["2 vueltas", "10 reps"],
             text: "Empujar de forma controlada, mantener la espalda apoyada y regresar lentamente a la posición inicial.",
-            video: videos.chestPress
+            video: videos.chestPress,
+            subTitle: "Flexiones en pared",
+            subText: "Si la máquina se siente difícil, hacer flexiones en pared. Es una opción segura para aprender el patrón de empuje.",
+            subVideo: videos.flexionesPared
           },
           {
             id: "jueves-rdl",
             title: "5. Peso muerto rumano con mancuernas",
             tags: ["2 vueltas", "10 reps"],
             text: "Llevar la cadera hacia atrás, mantener la espalda recta y controlar todo el recorrido.",
-            video: videos.pesoMuertoRumano
+            video: videos.pesoMuertoRumano,
+            subTitle: "Bisagra de cadera sin peso",
+            subText: "Si el movimiento se siente complejo, practicar sin carga, llevando la cadera hacia atrás y manteniendo la columna neutra.",
+            subVideo: videos.hipHinge
           },
           {
             id: "jueves-deadbug",
             title: "6. Dead bug",
             tags: ["2 vueltas", "8 por lado"],
             text: "Controlar la respiración, mantener el abdomen activo y mover las extremidades lentamente.",
-            video: videos.deadBug
+            video: videos.deadBug,
+            subTitle: "Bird dog",
+            subText: "Si el dead bug es difícil de coordinar, hacer bird dog en cuatro apoyos con movimiento lento y controlado.",
+            subVideo: videos.birdDog
           }
         ]
       }
@@ -949,7 +1086,24 @@
             <h4>${exercise.title}</h4>
             <div class="tags">${exercise.tags.map(createTag).join("")}</div>
             <p>${exercise.text}</p>
-            <a class="video" target="_blank" rel="noopener" href="${exercise.video}">▶ Ver video del ejercicio</a>
+
+            <a class="video" target="_blank" rel="noopener" href="${exercise.video}">
+              ▶ Ver video principal
+            </a>
+
+            <br>
+
+            <button class="sub-toggle" type="button" data-target="sub-${exercise.id}">
+              Sustitución si es necesario
+            </button>
+
+            <div class="substitution" id="sub-${exercise.id}">
+              <strong>${exercise.subTitle}</strong>
+              <p>${exercise.subText}</p>
+              <a class="sub-video" target="_blank" rel="noopener" href="${exercise.subVideo}">
+                ▶ Ver video de sustitución
+              </a>
+            </div>
           </div>
         </div>
       `;
@@ -984,6 +1138,7 @@
     const progressText = document.getElementById("progressText");
     const progressBar = document.getElementById("progressBar");
     const resetBtn = document.getElementById("resetBtn");
+    const subButtons = Array.from(document.querySelectorAll(".sub-toggle"));
 
     function loadProgress() {
       checks.forEach(check => {
@@ -1007,6 +1162,14 @@
       check.addEventListener("change", () => {
         localStorage.setItem("gym-" + check.dataset.id, check.checked);
         updateProgress();
+      });
+    });
+
+    subButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        const targetId = button.dataset.target;
+        const target = document.getElementById(targetId);
+        target.classList.toggle("active");
       });
     });
 
